@@ -66,7 +66,11 @@ var array2 = [1,25,4,3].map((value)=>
   a=15;
   console.log(a);
   //practice code
-  
+  //remove duplicates from array
+ let array3 = [1,4,3,6,8,1,3,6,8];
+ let uniquearray = [...new Set(array3)];
+ console.log(uniquearray);
+ 
   
 ; //output is 25
 
