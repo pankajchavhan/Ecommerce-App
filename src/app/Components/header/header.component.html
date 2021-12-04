@@ -1,0 +1,21 @@
+<!-- <marquee style="color: green; font-weight: bold;" width="100%" direction="left" height="auto">
+    This is a sample scrolling text that has scrolls texts to left.
+</marquee> -->
+<header class="sticky-top" >
+    <div class="navbar bg-primary shadow-sm ">
+        <div style="color: white;" class="navbar-brand align-item-center d-flex ">
+            <i style="font-size: 30px;" class="fas fa-shipping-fast"></i>&nbsp;
+            <strong>Flipkart</strong>
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search Products">
+            </div>
+            <span class="fas fa-search search-icon"></span>
+
+        </div>
+        <button routerLink="cart" class="btn btn-primary">
+            <i style="font-size: 30px;" class="fas fa-cart-plus"></i>
+            <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
+        </button>
+    </div>
+    
+</header>
