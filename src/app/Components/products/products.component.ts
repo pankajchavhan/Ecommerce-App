@@ -65,6 +65,7 @@ var array2 = [1,25,4,3].map((value)=>
 
   a=15;
   console.log(a);
+  //practice code
   
   
 ; //output is 25
