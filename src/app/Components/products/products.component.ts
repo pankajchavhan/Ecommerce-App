@@ -16,69 +16,85 @@ filterCategory:any;
   ngOnInit(): void {
     //practice start
     //eg.1
-    var a;
-    function parent(){
-      a= 6;
-    function child(){
-      let a = 5;
-      console.log(a);
-    }
-    child();
-    console.log(a);
-  }
-  parent();
-  console.log(a);
-  //eg.2
-  let obj ={
-    fname: "pankaj",
-    lname: "chavhan"
-  }
-  obj.fname = "pravin";
-  console.log(obj.fname);
+//     var a;
+//     function parent(){
+//       a= 6;
+//     function child(){
+//       let a = 5;
+//       console.log(a);
+//     }
+//     child();
+//     console.log(a);
+//   }
+//   parent();
+//   console.log(a);
+//   //eg.2
+//   let obj ={
+//     fname: "pankaj",
+//     lname: "chavhan"
+//   }
+//   obj.fname = "pravin";
+//   console.log(obj.fname);
 
  
-  //eg3
- var x =21;
- var myname = function(){
-  // console.log(x);
+//   //eg3
+//  var x =21;
+//  var myname = function(){
+//   // console.log(x);
 
-   console.log(x);
-   var x =20;
- };
- console.log(x);
- myname();
- //op is undefined
-//eg finding max and min number from array
-const array = [1,25,4,3];
-let value =Math.min(...array);
-console.log(value); //output is 1
+//    console.log(x);
+//    var x =20;
+//  };
+//  console.log(x);
+//  myname();
+//  //op is undefined
+// //eg finding max and min number from array
+// const array = [1,25,4,3];
+// let value =Math.min(...array);
+// console.log(value); //output is 1
 
-const array1 = [1,25,4,3];
-let value1 =Math.max(...array1);
-console.log(value1); //output is 25
+// const array1 = [1,25,4,3];
+// let value1 =Math.max(...array1);
+// console.log(value1); //output is 25
 
-var array2 = [1,25,4,3].map((value)=>
+// var array2 = [1,25,4,3].map((value)=>
 
-  Math.pow(value , 2));
-  console.log(array2);
-  //eg.
+//   Math.pow(value , 2));
+//   console.log(array2);
+//   //eg.
 
-  a=15;
-  console.log(a);
-  //practice code
-  //remove duplicates from array
- let array3 = [1,4,3,6,8,1,3,6,8];
- let uniquearray = [...new Set(array3)];
- console.log(uniquearray);
+//   a=15;
+//   console.log(a);
+//   //practice code
+//   //remove duplicates from array
+//  let array3 = [1,4,3,6,8,1,3,6,8];
+//  let uniquearray = [...new Set(array3)];
+//  console.log(uniquearray);
  
   
-; //output is 25
+// ; //output is 25
+// //assending number e.g
+// let num = [23,13,81,1,67,90];
+// let assendingNumbers = num.sort((a,b)=>
+// { 
+//   return a-b}
+// );
+// console.log(assendingNumbers);
+// //add no. from 0 to 100
+// let sum = 0;
+// let n =100;
+// for(let i=1; i<=n; i++){
+// sum += i;
+// console.log(sum);
+// }
+
+
 
 
    
  
   
-  //output is pravin(we cant reassign value to obj variable using const but we can change value of objects)
+//   //output is pravin(we cant reassign value to obj variable using const but we can change value of objects)
   
   
     

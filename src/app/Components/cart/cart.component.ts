@@ -13,8 +13,12 @@ grandTotal: number = 0;
 
   ngOnInit(): void {
     this.cartservice.getProducts().subscribe(res=>{
-      this.product = res;
-      
+      if(localStorage.getItem('addtoCart').length > 0){
+        this.product = JSON.parse(localStorage.getItem('addtoCart'))
+      }else{
+        this.product = res;
+      }
+    
       this.grandTotal = this.cartservice.gettotalPrice()
     })
   }

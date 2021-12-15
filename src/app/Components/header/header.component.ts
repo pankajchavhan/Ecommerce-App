@@ -13,10 +13,19 @@ searchTerm:string='';
 
   ngOnInit(): void {
     this.cartservice.getProducts().subscribe((res:any)=>{
-    this.totalItem = res.length;
-    }
-    )
+     // window.localStorage.setItem('cart' , (res.length));
+     if(localStorage.getItem('cart')){
+      this.totalItem = JSON.parse( window.localStorage.getItem('cart'));
+     }else{
+       this.totalItem = res.length
+     }
+      
+      
+    });
   }
+  // cartState(){
+  //  this.totalItem = JSON.parse( localStorage.getItem('cart'))
+  // }
   search(event:any){
     this.searchTerm =(event.target as HTMLInputElement).value;
     this.cartservice.search.next(this.searchTerm);

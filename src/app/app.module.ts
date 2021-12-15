@@ -11,13 +11,15 @@ import { CartService } from './service/cart.service';
 import { ApiService } from './service/api.service';
 import { FlterPipe } from './shared/flter.pipe';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RxjsComponent } from './Components/rxjs/rxjs.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CartComponent,
     ProductsComponent,
-    FlterPipe
+    FlterPipe,
+    RxjsComponent
   ],
   imports: [
     BrowserModule,

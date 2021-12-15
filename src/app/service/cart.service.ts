@@ -11,7 +11,10 @@ search = new BehaviorSubject<any>("");
 //productList = new Subject<any>();
   constructor() { }
   getProducts(){
+   // localStorage.setItem('cart',JSON.stringify(this.productList))
    return this.productList.asObservable();
+
+   
   }
   setProduct(product:any){
     this.cartItemList.push(...product);
@@ -19,15 +22,22 @@ search = new BehaviorSubject<any>("");
   }
   addtoCart(product:any){
     this.cartItemList.push(product);
+    console.log(this.cartItemList.length);
+    localStorage.setItem('cart',this.cartItemList.length)
+    localStorage.setItem('addtoCart',JSON.stringify(this.cartItemList))
+    //localStorage.setItem('getTotal',JSON.stringify(this.gettotalPrice()))
     this.productList.next(this.cartItemList);
     this.gettotalPrice();
-    console.log(this.cartItemList);
+   // console.log(product);
+    
+    
   }
   gettotalPrice():number{
     let grandTotal = 0;
     this.cartItemList.map((a:any)=>{
       grandTotal += a.total;
     })
+    
     return grandTotal;
   }
   removeCartItems(product:any){
