@@ -44,6 +44,7 @@ search = new BehaviorSubject<any>("");
     this.cartItemList.map((a:any, index:any)=>{
       if(product.id === a.id){
       this.cartItemList.splice(index,1);
+      //localStorage.removeItem('addtoCart')
       } 
     }
     )
@@ -51,6 +52,7 @@ search = new BehaviorSubject<any>("");
   }
   removeAllcart(){
     this.cartItemList = [];
+    //localStorage.clear();
     this.productList.next(this.cartItemList);
   }
 }

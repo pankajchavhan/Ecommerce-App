@@ -27,6 +27,7 @@ grandTotal: number = 0;
   }
   emptyCart(){
     this.cartservice.removeAllcart();
+    localStorage.clear()
   }
 
 }
