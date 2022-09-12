@@ -23,11 +23,12 @@
 }
 .card {
   padding: 20px;
-  margin: 30px;
+  margin: 20px;
+  width: 230px;
 }
 .card img {
   height: 150px;
-  width: 150px;
+  width: 100%;
   margin-bottom: 15;
   transition: 0.3s ease-in-out;
 }
