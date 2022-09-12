@@ -1,43 +1,43 @@
-.card-top{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: .25rem;
+.card-top {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
-.item img{
-    margin-top: 5px;
-    width: 64px;
-    height: 60px;
+.item img {
+  margin-top: 5px;
+  width: 64px;
+  height: 60px;
 }
-.item{
-    margin: 0px 15px;
-    text-align: center;
+.item {
+  margin: 0px 15px;
+  text-align: center;
 }
-.item a:hover{
-    color: blue;
+.item a:hover {
+  color: blue;
 }
-.card{
-    padding: 20px;
-    margin: 30px;
+.card {
+  padding: 20px;
+  margin: 30px;
 }
-.card img{
-    height: 200px;
-    width: 200px;
-    margin-bottom: 15;
-    transition: 0.3s ease-in-out;
+.card img {
+  height: 150px;
+  width: 150px;
+  margin-bottom: 15;
+  transition: 0.3s ease-in-out;
 }
-.card img:hover{
-    transition: 0.3s ease-in-out;
-    transform: scale(1.1);
+.card img:hover {
+  transition: 0.3s ease-in-out;
+  transform: scale(1.1);
 }
-.btn btn-warning{
-    background-color: red;
+.btn btn-warning {
+  background-color: red;
 }
-.price{
-   color: red; 
+.price {
+  color: red;
 }

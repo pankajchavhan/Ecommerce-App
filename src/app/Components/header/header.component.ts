@@ -1,33 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {RoutePaths} from 'src/app/enums/rout-path';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-totalItem:number ;
-searchTerm:string='';
-  constructor(private cartservice:CartService) { }
+  totalItem: number;
+  searchTerm: string = '';
+
+  constructor(private cartservice: CartService, private router: Router) {}
 
   ngOnInit(): void {
-    this.cartservice.getProducts().subscribe((res:any)=>{
-     // window.localStorage.setItem('cart' , (res.length));
-     if(localStorage.getItem('cart')){
-      this.totalItem = JSON.parse( window.localStorage.getItem('cart'));
-     }else{
-       this.totalItem = res.length
-     }
-      
-      
+    this.cartservice.getProducts().subscribe((res: any) => {
+      this.totalItem = res.length;
     });
   }
-  // cartState(){
-  //  this.totalItem = JSON.parse( localStorage.getItem('cart'))
-  // }
-  search(event:any){
-    this.searchTerm =(event.target as HTMLInputElement).value;
+
+  search(event: any) {
+    this.searchTerm = (event.target as HTMLInputElement).value;
     this.cartservice.search.next(this.searchTerm);
+  }
+
+  navigateToCart() {
+    this.router.navigate([RoutePaths.CART]);
   }
 }

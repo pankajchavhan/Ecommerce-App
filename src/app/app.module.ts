@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -8,10 +7,10 @@ import { CartComponent } from './Components/cart/cart.component';
 import { ProductsComponent } from './Components/products/products.component';
 import {HttpClientModule  } from "@angular/common/Http";
 import { CartService } from './service/cart.service';
-import { ApiService } from './service/api.service';
+import { ProductsService } from './service/products.service';
 import { FlterPipe } from './shared/flter.pipe';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RxjsComponent } from './Components/rxjs/rxjs.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +18,6 @@ import { RxjsComponent } from './Components/rxjs/rxjs.component';
     CartComponent,
     ProductsComponent,
     FlterPipe,
-    RxjsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +28,7 @@ import { RxjsComponent } from './Components/rxjs/rxjs.component';
   ],
   providers: [
     CartService,
-    ApiService
+    ProductsService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,129 +1,74 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/service/api.service';
+import { ProductsService } from 'src/app/service/products.service';
 import { CartService } from 'src/app/service/cart.service';
+import { Products } from 'src/app/interface/products.model';
+import { productCategory } from 'src/app/constants/products-category';
+import {forkJoin} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-productList:any;
-searchkey:string ='';
-filterCategory:any;
-  constructor(private api:ApiService, private cartservice:CartService) { }
+  productList: any;
+  searchkey: string = '';
+  filterCategory: any;
+
+  constructor(
+    private productsService: ProductsService,
+    private cartservice: CartService
+  ) {}
 
   ngOnInit(): void {
-    //practice start
-    //eg.1
-//     var a;
-//     function parent(){
-//       a= 6;
-//     function child(){
-//       let a = 5;
-//       console.log(a);
-//     }
-//     child();
-//     console.log(a);
-//   }
-//   parent();
-//   console.log(a);
-//   //eg.2
-//   let obj ={
-//     fname: "pankaj",
-//     lname: "chavhan"
-//   }
-//   obj.fname = "pravin";
-//   console.log(obj.fname);
-
- 
-//   //eg3
-//  var x =21;
-//  var myname = function(){
-//   // console.log(x);
-
-//    console.log(x);
-//    var x =20;
-//  };
-//  console.log(x);
-//  myname();
-//  //op is undefined
-// //eg finding max and min number from array
-// const array = [1,25,4,3];
-// let value =Math.min(...array);
-// console.log(value); //output is 1
-
-// const array1 = [1,25,4,3];
-// let value1 =Math.max(...array1);
-// console.log(value1); //output is 25
-
-// var array2 = [1,25,4,3].map((value)=>
-
-//   Math.pow(value , 2));
-//   console.log(array2);
-//   //eg.
-
-//   a=15;
-//   console.log(a);
-//   //practice code
-//   //remove duplicates from array
-//  let array3 = [1,4,3,6,8,1,3,6,8];
-//  let uniquearray = [...new Set(array3)];
-//  console.log(uniquearray);
- 
-  
-// ; //output is 25
-// //assending number e.g
-// let num = [23,13,81,1,67,90];
-// let assendingNumbers = num.sort((a,b)=>
-// { 
-//   return a-b}
-// );
-// console.log(assendingNumbers);
-// //add no. from 0 to 100
-// let sum = 0;
-// let n =100;
-// for(let i=1; i<=n; i++){
-// sum += i;
-// console.log(sum);
-// }
-
-
-
-
-   
- 
-  
-//   //output is pravin(we cant reassign value to obj variable using const but we can change value of objects)
-  
-  
-    
-
-    //practice end
-    this.api.getProduct().subscribe(res=>{
-      this.productList = res;
-      this.filterCategory = res;
-      this.productList.forEach((a:any) => {
-        if(a.category === "men's clothing" || a.category === "women's clothing"){
-          a.category = "fashion"
-        }
-        Object.assign(a,{quantity:1, total:a.price})
-
-      });
-    })
-    this.cartservice.search.subscribe((val:any)=>{
+    this.getAllProducts();
+    this.cartservice.search.subscribe((val: any) => {
       this.searchkey = val;
+    });
+  }
+
+  getAllProducts(): void {
+    forkJoin([
+      this.productsService.getFakestoreProducts(),
+      this.productsService.getProductsescuelajs()
+    ]).pipe(
+      map(([fakestoreProductApiResponse, escuelajsProductsApiResponse]:[Products, Products])=>{ 
+        const combineProducts = [fakestoreProductApiResponse,escuelajsProductsApiResponse];
+        const mergeProducts = [].concat.apply([], combineProducts);
+        return mergeProducts;
+      }
+    )).subscribe(productsRes =>{
+      this.productList = productsRes;
+      this.filterCategory = productsRes;
+      this.productList.forEach((product: Products) => {
+        if (
+          product.category === productCategory.MENS_CLOTHING ||
+          product.category === productCategory.WOMENS_CLOTHING
+        ) {
+          product.category = productCategory.FASHION;
+        }
+        if (product.category === 'Electronics') {
+          product.category = productCategory.ELECTRONICS;
+        }
+        if (product.category === productCategory.CLOTHES) {
+          product.category = productCategory.FASHION;
+        }
+        Object.assign(product, { quantity: 1, total: product.price });
+      });
+     
     })
   }
-  addtoCart(item){
+
+  addtoCart(item: any) {
     this.cartservice.addtoCart(item);
   }
-  filter(category:any){
-    this.filterCategory = this.productList.filter((a:any)=>{
-      if(a.category == category || category == ''){
-         return a;
-      }
-    })
-  }
 
+  filterByCategory(category: any) {
+    this.filterCategory = this.productList.filter((product: Products) => {
+      if (product.category == category || category == '') {
+        return product;
+      }
+    });
+  }
 }
