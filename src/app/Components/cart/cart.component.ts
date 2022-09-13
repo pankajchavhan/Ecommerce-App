@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {RoutePaths} from 'src/app/enums/rout-path';
+import {FakestoreProductsModel} from 'src/app/interface/products.model';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  product: any = [];
+  product: FakestoreProductsModel[] = [];
   grandTotal: number = 0;
 
   constructor(
@@ -18,13 +19,13 @@ export class CartComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.cartservice.getProducts().subscribe((res) => {
+    this.cartservice.getProducts().subscribe((res:FakestoreProductsModel[]) => {
       this.product = res;
       this.grandTotal = this.cartservice.gettotalPrice();
     });
   }
 
-  removeItem(item: any) {
+  removeItem(item: FakestoreProductsModel) {
     this.cartservice.removeCartItems(item);
   }
 

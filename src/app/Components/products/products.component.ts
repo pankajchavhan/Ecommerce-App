@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/service/products.service';
 import { CartService } from 'src/app/service/cart.service';
-import { Products } from 'src/app/interface/products.model';
+import { EsculaeJsProductsModel, FakestoreProductsModel } from 'src/app/interface/products.model';
 import { productCategory } from 'src/app/constants/products-category';
 import {forkJoin} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -12,9 +12,9 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  productList: any;
+  productList: FakestoreProductsModel[];
   searchkey: string = '';
-  filterCategory: any;
+  filterCategory: FakestoreProductsModel[];
 
   constructor(
     private productsService: ProductsService,
@@ -33,15 +33,15 @@ export class ProductsComponent implements OnInit {
       this.productsService.getFakestoreProducts(),
       this.productsService.getProductsescuelajs()
     ]).pipe(
-      map(([fakestoreProductApiResponse, escuelajsProductsApiResponse]:[Products, Products])=>{ 
+      map(([fakestoreProductApiResponse, escuelajsProductsApiResponse]:[FakestoreProductsModel[], EsculaeJsProductsModel[]])=>{ 
         const combineProducts = [fakestoreProductApiResponse,escuelajsProductsApiResponse];
         const mergeProducts = [].concat.apply([], combineProducts);
         return mergeProducts;
       }
-    )).subscribe(productsRes =>{
+    )).subscribe((productsRes:FakestoreProductsModel[]) =>{
       this.productList = productsRes;
       this.filterCategory = productsRes;
-      this.productList.forEach((product: Products) => {
+      this.productList.forEach((product: FakestoreProductsModel) => {
         if (
           product.category === productCategory.MENS_CLOTHING ||
           product.category === productCategory.WOMENS_CLOTHING
@@ -56,16 +56,15 @@ export class ProductsComponent implements OnInit {
         }
         Object.assign(product, { quantity: 1, total: product.price });
       });
-     
     })
   }
 
-  addtoCart(item: any) {
+  addtoCart(item: FakestoreProductsModel) {
     this.cartservice.addtoCart(item);
   }
 
-  filterByCategory(category: any) {
-    this.filterCategory = this.productList.filter((product: Products) => {
+  filterByCategory(category: string) {
+    this.filterCategory = this.productList.filter((product: FakestoreProductsModel) => {
       if (product.category == category || category == '') {
         return product;
       }
