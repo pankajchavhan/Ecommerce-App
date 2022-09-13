@@ -9,7 +9,8 @@ import {HttpClientModule  } from "@angular/common/Http";
 import { CartService } from './service/cart.service';
 import { ProductsService } from './service/products.service';
 import { FlterPipe } from './shared/flter.pipe';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [

@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { EsculaeJsProductsModel, FakestoreProductsModel } from '../interface/products.model';
+ //Razor pay Integration
+function _window() : any {
+  // return the global native browser window object
+  return window;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +19,10 @@ export class ProductsService {
   private productsResponseescuelajsApi$: Observable<EsculaeJsProductsModel[]>;
 
   constructor(private http: HttpClient) {}
+
+  get nativeWindow() : any {
+    return _window();
+ }
 
   getFakestoreProducts(): Observable<FakestoreProductsModel[]> {
     if (!this.productsResponsefakeStoreApi$) {

@@ -12,7 +12,7 @@ import { CartService } from 'src/app/service/cart.service';
 export class CartComponent implements OnInit {
   product: FakestoreProductsModel[] = [];
   grandTotal: number = 0;
-
+  
   constructor(
     private cartservice: CartService,
     private router: Router
