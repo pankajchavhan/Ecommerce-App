@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {RoutePaths} from 'src/app/enums/rout-path';
+import {FakestoreProductsModel} from 'src/app/interface/products.model';
 import { CartService } from 'src/app/service/cart.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   constructor(private cartservice: CartService, private router: Router) {}
 
   ngOnInit(): void {
-    this.cartservice.getProducts().subscribe((res: any) => {
+    this.cartservice.getProducts().subscribe((res: FakestoreProductsModel[]) => {
       this.totalItem = res.length;
     });
   }

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject} from 'rxjs';
+import {FakestoreProductsModel} from '../interface/products.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cartItemList: any = [];
-  productList = new BehaviorSubject<any>([]);
+  
+  cartItemList: FakestoreProductsModel[] = [];
+  productList = new BehaviorSubject<FakestoreProductsModel[]>([]);
   search = new BehaviorSubject<any>('');
 
   constructor() {}
@@ -15,12 +17,12 @@ export class CartService {
     return this.productList.asObservable();
   }
 
-  setProduct(product: any) {
+  setProduct(product: FakestoreProductsModel[]) {
     this.cartItemList.push(...product);
     this.productList.next(product);
   }
 
-  addtoCart(product: any) {
+  addtoCart(product: FakestoreProductsModel) {
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
     this.gettotalPrice();
@@ -28,15 +30,15 @@ export class CartService {
 
   gettotalPrice(): number {
     let grandTotal = 0;
-    this.cartItemList.map((a: any) => {
-      grandTotal += a.total;
+    this.cartItemList.map((item: FakestoreProductsModel) => {
+      grandTotal += item.total;
     });
     return grandTotal;
   }
 
-  removeCartItems(product: any) {
-    this.cartItemList.map((a: any, index: any) => {
-      if (product.id === a.id) {
+  removeCartItems(product: FakestoreProductsModel) {
+    this.cartItemList.map((item: FakestoreProductsModel, index: any) => {
+      if (product.id === item.id) {
         this.cartItemList.splice(index, 1);
       }
     });
