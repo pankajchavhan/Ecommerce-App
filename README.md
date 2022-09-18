@@ -28,3 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Razor pay Integration
 https://www.abhijitgatade.com/blogs/view/razorpay-payment-gateway-integration-in-angular
+
+## Husky pre-commit hook
+1. https://typicode.github.io/husky/#/
+2. pre-commit checks: npx husky-init && npm install
