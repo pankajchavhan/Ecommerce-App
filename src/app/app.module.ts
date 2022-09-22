@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './Components/header/header.component';
-import { CartComponent } from './Components/cart/cart.component';
-import { ProductsComponent } from './Components/products/products.component';
+import { HeaderComponent } from './ui/navbar/header.component';
+import { CartComponent } from './ui/cart/cart.component';
+import { ProductsComponent } from './ui/products/products.component';
 import {HttpClientModule  } from "@angular/common/Http";
 import { CartService } from './service/cart.service';
 import { ProductsService } from './service/products.service';
-import { FlterPipe } from './shared/flter.pipe';
+import { FilterPipe } from './shared/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     CartComponent,
     ProductsComponent,
-    FlterPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
