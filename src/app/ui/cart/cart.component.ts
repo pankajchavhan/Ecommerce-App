@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {RoutePaths} from 'src/app/enums/rout-path';
 import {FakestoreProductsModel} from 'src/app/interface/products.model';
-import { CartService } from 'src/app/service/cart.service';
+import {CartService} from 'src/app/service/cart.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
   product: FakestoreProductsModel[] = [];
@@ -36,4 +36,5 @@ export class CartComponent implements OnInit {
   naigateToProducts(){
    this.router.navigate([RoutePaths.PRODUCTS]);
   }
+
 }

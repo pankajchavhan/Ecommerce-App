@@ -1,13 +1,14 @@
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {BrowserModule} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppRoutingModule} from 'src/app/app-routing.module';
 import {CartService} from 'src/app/service/cart.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 import { CartComponent } from './cart.component';
 
-describe('CartComponent', () => {
+describe('CartsComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
   let cartServiceSpy: jasmine.SpyObj<CartService>;
@@ -22,7 +23,7 @@ describe('CartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartComponent],
+      declarations: [ CartComponent ],
       imports: [
         RouterTestingModule,
         BrowserModule,
