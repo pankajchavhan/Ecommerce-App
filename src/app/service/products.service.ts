@@ -57,9 +57,9 @@ export class ProductsService {
    return this.productsResponseescuelajsApi$;
   }
 
-  getSingleProductbyId(id:number){
-    return this.http.get<any>(`${environment.productsescuelajsApi}/${id}`).pipe(
-      map((product)=>{
+  getSingleProductbyId(id:number):Observable<EsculaeJsProductsModel>{
+    return this.http.get<EsculaeJsProductsModel>(`${environment.productsescuelajsApi}/${id}`).pipe(
+      map((product:any)=>{
         const singleProduct = {
           id: product?.id,
           title: product?.title,
@@ -67,22 +67,22 @@ export class ProductsService {
           description: product?.description,
           image: product?.images[0],
           category: product?.category?.name,
-          images: product.images
+          images: product?.images
         };
 
         return singleProduct;
       }));
   }
 
-  deleteProductById(id:number){
-   return this.http.delete<any>(`${environment.productsescuelajsApi}/${id}`);
+  deleteProductById(id:number):Observable<EsculaeJsProductsModel>{
+   return this.http.delete<EsculaeJsProductsModel>(`${environment.productsescuelajsApi}/${id}`);
   }
 
-  addNewProduct(requestPayload){
-    return this.http.post<any>(environment.productsescuelajsApi,requestPayload);
+  addNewProduct(requestPayload):Observable<EsculaeJsProductsModel>{
+    return this.http.post<EsculaeJsProductsModel>(environment.productsescuelajsApi,requestPayload);
   }
 
-  updateProductById(id:number,requestPayload){
-  return this.http.put<any>(`${environment.productsescuelajsApi}/ ${id}`,requestPayload);
+  updateProductById(id:number,requestPayload):Observable<EsculaeJsProductsModel>{
+  return this.http.put<EsculaeJsProductsModel>(`${environment.productsescuelajsApi}/ ${id}`,requestPayload);
   }
 }
