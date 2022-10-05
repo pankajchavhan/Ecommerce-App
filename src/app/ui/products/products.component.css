@@ -42,3 +42,13 @@
 .price {
   color: red;
 }
+
+.btn-success{
+  height: 40px;
+  margin-top: 20px;
+}
+
+a{
+  text-decoration: none;
+  margin-left: 5px;
+}

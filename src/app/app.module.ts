@@ -4,12 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './ui/navbar/header.component';
 import { ProductsComponent } from './ui/products/products.component';
-import {HttpClientModule  } from "@angular/common/Http";
+import { HttpClientModule } from '@angular/common/Http';
 import { CartService } from './service/cart.service';
 import { ProductsService } from './service/products.service';
 import { FilterPipe } from './shared/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ViewProductDetailsComponent } from './ui/products/view-product-details/view-product-details.component';
+import {SharedModule} from './shared/module/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,18 +18,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     ProductsComponent,
     FilterPipe,
+    ViewProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule
   ],
-  providers: [
-    CartService,
-    ProductsService
-  ],
-  bootstrap: [AppComponent]
+  providers: [CartService, ProductsService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

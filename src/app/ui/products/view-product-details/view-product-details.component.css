@@ -1,0 +1,13 @@
+.card {
+    margin-top: 30px;
+    height: auto;
+}
+
+.card-title {
+    margin-bottom: 40px;
+}
+
+.btn {
+    width: 90%;
+    height: 50px;
+}

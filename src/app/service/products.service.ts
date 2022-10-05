@@ -46,6 +46,7 @@ export class ProductsService {
             description: product?.description,
             image: product?.images[0],
             category: product?.category?.name,
+            images: product.images
           });
         });
         return productList;
@@ -54,5 +55,34 @@ export class ProductsService {
     );
    }
    return this.productsResponseescuelajsApi$;
+  }
+
+  getSingleProductbyId(id:number){
+    return this.http.get<any>(`${environment.productsescuelajsApi}/${id}`).pipe(
+      map((product)=>{
+        const singleProduct = {
+          id: product?.id,
+          title: product?.title,
+          price: product?.price,
+          description: product?.description,
+          image: product?.images[0],
+          category: product?.category?.name,
+          images: product.images
+        };
+
+        return singleProduct;
+      }));
+  }
+
+  deleteProductById(id:number){
+   return this.http.delete<any>(`${environment.productsescuelajsApi}/${id}`);
+  }
+
+  addNewProduct(requestPayload){
+    return this.http.post<any>(environment.productsescuelajsApi,requestPayload);
+  }
+
+  updateProductById(id:number,requestPayload){
+  return this.http.put<any>(`${environment.productsescuelajsApi}/ ${id}`,requestPayload);
   }
 }

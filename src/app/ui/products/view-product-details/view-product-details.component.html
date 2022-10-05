@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="card">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <img class="card-img-top" src="{{productDetails?.image}}" alt="">
+            </div>
+            <div class="card-body col-lg-6 col-md-6 col-sm-12">
+                <h1 class="text-center mb-30">{{productDetails?.title}}</h1>
+                <p class="card-text "><strong>Category: </strong>{{productDetails?.category}}</p>
+                <p class="card-text "><strong>Description: </strong>{{productDetails?.description}}</p>
+                <p class="card-text "><strong>Price: </strong><span style="color:green;">{{productDetails?.price |
+                        currency: "INR"}}</span></p>
+                <p class="card-text "><strong>Quantity: </strong>1</p>
+                <div class="row mt-20">
+                    <div class="col-6">
+                        <button class="btn btn-warning text-nowrap" (click)="addtoCart(productDetails)">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <div class="col-6 mb-10">
+                        <button class="btn btn-danger  text-nowrap">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isAdminRole">
+                    <div class="col-6">
+                        <button class="btn btn-danger  text-nowrap" (click)="deleteProduct(productDetails)">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
