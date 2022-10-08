@@ -7,8 +7,9 @@ import {
 } from 'src/app/interface/products.model';
 import { productCategory } from 'src/app/constants/products-category';
 import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {SpinnerService} from 'src/app/service/spinner/spinner.service';
 
 @Component({
   selector: 'app-products',
@@ -26,7 +27,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private cartservice: CartService,
-    private formbuilder: FormBuilder
+    private formbuilder: FormBuilder,
+    private spinerService: SpinnerService
   ) {}
   //Razor pay Integration
   options = {
@@ -90,6 +92,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProducts(): void {
+    this.spinerService.show();
     forkJoin([
       this.productsService.getFakestoreProducts(),
       this.productsService.getProductsescuelajs(),
@@ -107,7 +110,10 @@ export class ProductsComponent implements OnInit {
             const mergeProducts = [].concat.apply([], combineProducts);
             return mergeProducts;
           }
-        )
+        ),
+        finalize(()=>{
+          this.spinerService.hide();
+        })
       )
       .subscribe((productsRes: FakestoreProductsModel[]) => {
         this.productList = productsRes;

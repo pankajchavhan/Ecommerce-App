@@ -5,12 +5,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './ui/navbar/header.component';
 import { ProductsComponent } from './ui/products/products.component';
 import { HttpClientModule } from '@angular/common/Http';
-import { CartService } from './service/cart.service';
-import { ProductsService } from './service/products.service';
 import { FilterPipe } from './shared/filter.pipe';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewProductDetailsComponent } from './ui/products/view-product-details/view-product-details.component';
-import {SharedModule} from './shared/module/shared.module';
+import { SharedModule } from './shared/module/shared.module';
+import { SpinnerComponent } from './ui/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +17,10 @@ import {SharedModule} from './shared/module/shared.module';
     ProductsComponent,
     FilterPipe,
     ViewProductDetailsComponent,
+    SpinnerComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    SharedModule
-  ],
-  providers: [CartService, ProductsService],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
