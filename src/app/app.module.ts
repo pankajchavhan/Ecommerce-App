@@ -4,11 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './ui/navbar/header.component';
 import { ProductsComponent } from './ui/products/products.component';
-import { HttpClientModule } from '@angular/common/Http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/Http';
 import { FilterPipe } from './shared/filter.pipe';
 import { ViewProductDetailsComponent } from './ui/products/view-product-details/view-product-details.component';
 import { SharedModule } from './shared/module/shared.module';
 import { SpinnerComponent } from './ui/spinner/spinner.component';
+import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
+import { ErrorComponent } from './ui/error/error/error.component';
+import {GlobalErrorHandlerInterceptor} from './interceptor/global-error-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,17 @@ import { SpinnerComponent } from './ui/spinner/spinner.component';
     FilterPipe,
     ViewProductDetailsComponent,
     SpinnerComponent,
+    PageNotFoundComponent,
+    ErrorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalErrorHandlerInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
