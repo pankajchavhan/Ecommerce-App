@@ -18,8 +18,10 @@ export interface EsculaeJsProductsModel {
     title: string,
     price: number,
     description: string,
-    category: {
-        name: string,
+    category?: {
+        id?: number,
+        name?: string,
+        image?: string
     },
     image?: string,
     images?: string[]
