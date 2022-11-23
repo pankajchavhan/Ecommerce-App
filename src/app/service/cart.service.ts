@@ -8,23 +8,23 @@ import {FakestoreProductsModel} from '../interface/products.model';
 export class CartService {
   
   cartItemList: FakestoreProductsModel[] = [];
-  productList = new BehaviorSubject<FakestoreProductsModel[]>([]);
+  productList$ = new BehaviorSubject<FakestoreProductsModel[]>([]);
   search = new BehaviorSubject<any>('');
 
   constructor() {}
 
   getProducts() {
-    return this.productList.asObservable();
+    return this.productList$.asObservable();
   }
 
   setProduct(product: FakestoreProductsModel[]) {
     this.cartItemList.push(...product);
-    this.productList.next(product);
+    this.productList$.next(product);
   }
 
   addtoCart(product: FakestoreProductsModel) {
     this.cartItemList.push(product);
-    this.productList.next(this.cartItemList);
+    this.productList$.next(this.cartItemList);
     this.gettotalPrice();
   }
 
@@ -42,11 +42,11 @@ export class CartService {
         this.cartItemList.splice(index, 1);
       }
     });
-    this.productList.next(this.cartItemList);
+    this.productList$.next(this.cartItemList);
   }
 
   removeAllcart() {
     this.cartItemList = [];
-    this.productList.next(this.cartItemList);
+    this.productList$.next(this.cartItemList);
   }
 }

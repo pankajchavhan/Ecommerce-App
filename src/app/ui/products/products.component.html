@@ -36,6 +36,9 @@
         <h6>Furniture</h6>
       </a>
     </div>
+    <div class="col-lg-4 col-md-3 col-sm-3 ml-30px">
+      <button (click)=" AddProduct()" class="btn btn-success"type="button"data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>
+    </div>
   </div>
 </div>
 <div class="container">
@@ -59,10 +62,13 @@
           ">
           {{ item?.description }}
         </p>
-        <p>
+        <p class="col-12">
           <strong>Price:</strong>&nbsp;<span class="price" style="color: green">
             {{ item?.price | currency: "INR"}}
           </span>
+          <a class="col-6" [routerLink]="['/product',item.id]">
+            View Details
+          </a>
         </p>
         <div class="row">
           <div class="col-6">
@@ -78,5 +84,50 @@
         </div>
       </div>
     </ng-container>
+  </div>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="productsForm"> 
+              <div class="mb-3">
+                <label for="id" class="form-label">Id</label>
+                <input type="number" class="form-control" formControlName="id" >
+              </div>
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" formControlName="title">
+              </div>
+              <div class="mb-3">
+                  <label for="price" class="form-label">Price</label>
+                  <input type="price" class="form-control"formControlName="price" >
+                </div>
+                <div class="mb-3">
+                  <label for="categoryId" class="form-label">Category Id</label>
+                  <input type="number" class="form-control"formControlName="categoryId" >
+                </div>
+                <div class="mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input type="text" class="form-control"formControlName="image" >
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea type="text" class="form-control"formControlName="description" ></textarea>
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button *ngIf="Addbutton"   type="button" (click)="addNewProduct(productsForm.value)"  class="btn btn-primary">Add +</button>
+        <button *ngIf="UpdateButton"   type="button" (click)="updateProduct()"  class="btn btn-primary">Update</button>
+      </div>
+    </div>
   </div>
 </div>

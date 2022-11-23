@@ -32,3 +32,8 @@ https://www.abhijitgatade.com/blogs/view/razorpay-payment-gateway-integration-in
 ## Husky pre-commit hook
 1. https://typicode.github.io/husky/#/
 2. pre-commit checks: npx husky-init && npm install
+
+## Performance optimisation techniques
+1)https://medium.com/swlh/angular-performance-optimization-techniques-5b7ca0808f8b
+2)https://www.dotnettricks.com/learn/angular/tips-to-optimize-your-angular-application
+3)https://www.xenonstack.com/blog/performance-optimization-in-angular
